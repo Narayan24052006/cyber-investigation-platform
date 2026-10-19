@@ -1,0 +1,47 @@
+<group name="linux,custom_attack_investigation,">
+
+  <!-- Rule 1: Detect Reverse Shell Execution Pattern -->
+  <rule id="100001" level="12">
+    <if_group>syslog</if_group>
+    <match>sys_update.py|python3</match>
+    <regex>Process spawned.*sys_update\.py|TCP-Outbound.*DPT=4444</regex>
+    <description>Critical: Interactive Python reverse shell execution / C2 egress detected</description>
+    <mitre>
+      <id>T1059.006</id>
+      <id>T1095</id>
+    </mitre>
+  </rule>
+
+  <!-- Rule 2: Detect Malicious Crontab Backdoor Persistence -->
+  <rule id="100002" level="10">
+    <if_group>syslog</if_group>
+    <match>crontab</match>
+    <regex>REPLACE.*crontab|CMD.*sys_update\.py</regex>
+    <description>High: Crontab persistence mechanism installed</description>
+    <mitre>
+      <id>T1053.003</id>
+    </mitre>
+  </rule>
+
+  <!-- Rule 3: Detect Sensitive Credential Store Access -->
+  <rule id="100003" level="9">
+    <if_group>syslog</if_group>
+    <match>/etc/passwd|/etc/shadow</match>
+    <description>High: Access to sensitive local credential database (/etc/passwd or /etc/shadow)</description>
+    <mitre>
+      <id>T1003</id>
+    </mitre>
+  </rule>
+
+  <!-- Rule 4: Detect Data Exfiltration over Outbound Port 5555 -->
+  <rule id="100004" level="13">
+    <if_group>syslog</if_group>
+    <match>TCP-Outbound</match>
+    <regex>DPT=5555</regex>
+    <description>Critical: High-volume outbound data exfiltration over non-standard port 5555</description>
+    <mitre>
+      <id>T1041</id>
+    </mitre>
+  </rule>
+
+</group>

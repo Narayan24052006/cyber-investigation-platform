@@ -1,0 +1,13 @@
+root
+uid=0(root) gid=0(root) groups=0(root)
+Linux 5d5d90df4dc2 6.12.76-linuxkit #1 SMP Thu Jun 25 13:45:40 UTC 2026 aarch64 aarch64 aarch64 GNU/Linux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0   2332  1336 ?        Ss   07:54   0:00 /bin/sh -c service apache2 start && tail -f /dev/null
+root        25  0.0  0.1   7612  4548 ?        Ss   07:54   0:00 /usr/sbin/apache2 -k start
+www-data    29  0.0  0.1 2000408 5148 ?        Sl   07:54   0:00 /usr/sbin/apache2 -k start
+www-data    30  0.0  0.1 2000480 5268 ?        Sl   07:54   0:00 /usr/sbin/apache2 -k start
+root        88  0.0  0.0   2260  1076 ?        S    07:54   0:00 tail -f /dev/null
+tcpdump     89  0.0  0.2  15360  6784 ?        Ss   07:54   0:00 tcpdump -i eth0 -s 0 -w /evidence/full_attack.pcap
+root       101  0.0  0.3  13868  9540 ?        Ss   08:24   0:00 python3 /evidence/sys_update.py
+root       134  0.0  0.0   3880  2744 ?        Ss   08:33   0:00 bash -c ps aux >> /evidence/compromise_discovery.txt
+root       140  0.0  0.0   6464  2448 ?        R    08:33   0:00 ps aux

@@ -1,0 +1,17 @@
+# Python environment & cache
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# macOS artifacts
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary editor files
+*.swp
+*.swo
+.vscode/
+.idea/

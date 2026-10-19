@@ -1,0 +1,50 @@
+[
+  {
+    "stage": "Phase 1: Reconnaissance",
+    "timestamp": "T+00:00",
+    "source": "Network Capture (PCAP)",
+    "indicator": "SYN Port Sweep from 172.20.0.10 to 172.20.0.20",
+    "mitre": "T1046 - Network Service Scanning",
+    "severity": "Medium"
+  },
+  {
+    "stage": "Phase 2: Initial Foothold & Masquerading",
+    "timestamp": "T+00:45",
+    "source": "Static Malware Analysis",
+    "indicator": "Execution of sys_update.py (SHA256: 4d084f83182bbd83...)",
+    "mitre": "T1036.005 - Masquerading",
+    "severity": "High"
+  },
+  {
+    "stage": "Phase 3: C2 Establishment",
+    "timestamp": "T+01:06",
+    "source": "SIEM Alert (Rule 100001) + PCAP",
+    "indicator": "Egress connection to 4444/TCP. Reverse shell interactive session active.",
+    "mitre": "T1095 - Non-Application Layer Protocol",
+    "severity": "Critical"
+  },
+  {
+    "stage": "Phase 4: Credential Access",
+    "timestamp": "T+02:15",
+    "source": "SIEM Alert (Rule 100003)",
+    "indicator": "Read access to /etc/passwd and /etc/shadow by non-interactive shell",
+    "mitre": "T1003 - OS Credential Dumping",
+    "severity": "High"
+  },
+  {
+    "stage": "Phase 5: Persistence Installation",
+    "timestamp": "T+03:01",
+    "source": "SIEM Alert (Rule 100002) + YARA",
+    "indicator": "Scheduled cron job injected: */5 * * * * root python3 /evidence/sys_update.py",
+    "mitre": "T1053.003 - Scheduled Task/Job: Cron",
+    "severity": "High"
+  },
+  {
+    "stage": "Phase 6: Data Exfiltration",
+    "timestamp": "T+04:19",
+    "source": "SIEM Alert (Rule 100004) + Carved Stream 394",
+    "indicator": "Transmission of /etc/passwd payload outbound over port 5555/TCP",
+    "mitre": "T1041 - Exfiltration Over C2 Channel",
+    "severity": "Critical"
+  }
+]

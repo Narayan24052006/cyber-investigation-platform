@@ -1,0 +1,40 @@
+================================================================================
+UNIFIED ATTACK TIMELINE & CORRELATION REPORT
+================================================================================
+
+[T+00:00] Phase 1: Reconnaissance
+  * Source:   Network Capture (PCAP)
+  * Evidence: SYN Port Sweep from 172.20.0.10 to 172.20.0.20
+  * MITRE:    T1046 - Network Service Scanning
+  * Severity: Medium
+
+[T+00:45] Phase 2: Initial Foothold & Masquerading
+  * Source:   Static Malware Analysis
+  * Evidence: Execution of sys_update.py (SHA256: 4d084f83182bbd83...)
+  * MITRE:    T1036.005 - Masquerading
+  * Severity: High
+
+[T+01:06] Phase 3: C2 Establishment
+  * Source:   SIEM Alert (Rule 100001) + PCAP
+  * Evidence: Egress connection to 4444/TCP. Reverse shell interactive session active.
+  * MITRE:    T1095 - Non-Application Layer Protocol
+  * Severity: Critical
+
+[T+02:15] Phase 4: Credential Access
+  * Source:   SIEM Alert (Rule 100003)
+  * Evidence: Read access to /etc/passwd and /etc/shadow by non-interactive shell
+  * MITRE:    T1003 - OS Credential Dumping
+  * Severity: High
+
+[T+03:01] Phase 5: Persistence Installation
+  * Source:   SIEM Alert (Rule 100002) + YARA
+  * Evidence: Scheduled cron job injected: */5 * * * * root python3 /evidence/sys_update.py
+  * MITRE:    T1053.003 - Scheduled Task/Job: Cron
+  * Severity: High
+
+[T+04:19] Phase 6: Data Exfiltration
+  * Source:   SIEM Alert (Rule 100004) + Carved Stream 394
+  * Evidence: Transmission of /etc/passwd payload outbound over port 5555/TCP
+  * MITRE:    T1041 - Exfiltration Over C2 Channel
+  * Severity: Critical
+

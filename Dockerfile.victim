@@ -1,0 +1,17 @@
+FROM ubuntu:22.04
+
+# Prevent interactive prompts during apt installs
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install services and forensics tools
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    mysql-server \
+    curl \
+    iputils-ping \
+    tcpdump \
+    python3 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Start Apache and keep the container alive
+CMD service apache2 start && tail -f /dev/null

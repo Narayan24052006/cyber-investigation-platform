@@ -1,0 +1,15 @@
+# Nmap 7.991 scan initiated Tue Oct 13 07:47:04 2026 as: /usr/lib/nmap/nmap -sS -sV -O -oN /evidence/nmap_recon.txt 172.20.0.20
+Nmap scan report for ubuntu-victim.cyber-investigation-platform_lab-net (172.20.0.20)
+Host is up (0.00028s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.52 ((Ubuntu))
+MAC Address: 6A:CE:CB:D8:82:84 (Unknown)
+Device type: general purpose
+Running: Linux 4.X|5.X
+OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5
+OS details: Linux 4.15 - 5.19
+Network Distance: 1 hop
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Oct 13 07:47:12 2026 -- 1 IP address (1 host up) scanned in 7.78 seconds

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  attacker:
+    build:
+      context: .
+      dockerfile: Dockerfile.attacker
+    container_name: kali-attacker
+    networks:
+      lab-net:
+        ipv4_address: 172.20.0.10
+    volumes:
+      - ./evidence:/evidence
+
+  victim:
+    build:
+      context: .
+      dockerfile: Dockerfile.victim
+    container_name: ubuntu-victim
+    networks:
+      lab-net:
+        ipv4_address: 172.20.0.20
+    volumes:
+      - ./evidence:/evidence
+
+networks:
+  lab-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24

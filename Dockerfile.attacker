@@ -1,0 +1,13 @@
+FROM kalilinux/kali-rolling
+
+# Update and install essential attack tools
+RUN apt-get update && apt-get install -y \
+    nmap \
+    netcat-traditional \
+    python3 \
+    curl \
+    iputils-ping \
+    && rm -rf /var/lib/apt/lists/*
+
+# Keep the container running in the background
+CMD ["tail", "-f", "/dev/null"]

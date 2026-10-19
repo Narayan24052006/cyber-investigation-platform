@@ -1,0 +1,10 @@
+Oct 19 22:00:10 ubuntu-victim kernel: [  100.120] IPTables-Dropped: IN=eth0 OUT= SRC=172.20.0.10 DST=172.20.0.20 PROTO=TCP SPT=47720 DPT=3306 FLAGS=SYN
+Oct 19 22:00:11 ubuntu-victim kernel: [  100.125] IPTables-Dropped: IN=eth0 OUT= SRC=172.20.0.10 DST=172.20.0.20 PROTO=TCP SPT=47720 DPT=23 FLAGS=SYN
+Oct 19 22:00:12 ubuntu-victim apache2[142]: 172.20.0.10 - - [19/Oct/2026:22:00:12 +0000] "GET / HTTP/1.1" 200 3477 "-" "curl/7.88.1"
+Oct 19 22:01:05 ubuntu-victim python3[210]: [ALERT] Process spawned: python3 /evidence/sys_update.py (PID: 210, UID: 0)
+Oct 19 22:01:06 ubuntu-victim kernel: [  155.430] TCP-Outbound: IN= OUT=eth0 SRC=172.20.0.20 DST=172.20.0.10 PROTO=TCP SPT=52344 DPT=4444 FLAGS=SYN
+Oct 19 22:02:15 ubuntu-victim sudo[240]: root : TTY=pts/0 ; PWD=/ ; USER=root ; COMMAND=/bin/cat /etc/passwd
+Oct 19 22:03:00 ubuntu-victim CRON[310]: (root) CMD (python3 /evidence/sys_update.py)
+Oct 19 22:03:01 ubuntu-victim crontab[315]: (root) REPLACE (root) - File modified: /etc/crontab by UID 0
+Oct 19 22:04:18 ubuntu-victim sudo[345]: root : TTY=pts/0 ; PWD=/ ; USER=root ; COMMAND=/bin/cat /etc/shadow
+Oct 19 22:04:19 ubuntu-victim kernel: [  348.910] TCP-Outbound: IN= OUT=eth0 SRC=172.20.0.20 DST=172.20.0.10 PROTO=TCP SPT=54120 DPT=5555 FLAGS=SYN
